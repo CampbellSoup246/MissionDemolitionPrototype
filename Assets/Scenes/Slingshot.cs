@@ -54,6 +54,7 @@ public class Slingshot : MonoBehaviour {
             aimingMode = false;
             projectile.GetComponent<Rigidbody>().isKinematic = false;
             projectile.GetComponent<Rigidbody>().velocity = -mouseDelta * velocityMult;
+            FollowCam.S.poi = projectile;  //From Page 550*********.   //This line will use the singleton to set val of poi for the camera.
             projectile = null;
         }
         //Basically all the above summed up as AMBLAA. A Minus B Looks At A. ****** Which one the vector will point at.
