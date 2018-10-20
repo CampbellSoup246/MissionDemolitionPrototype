@@ -91,7 +91,7 @@ public class MissionDemolition : MonoBehaviour {
 
     void OnGui()
     {
-        Rect buttonRect = new Rect((Screen.width / 2) - 50, 10, 100, 24); //Draw the GUI button for view switching at top of screen.
+        Rect buttonRect = new Rect(0, 0, 50, 50);//(Screen.width / 2) - 50, 10, 100, 24); //Draw the GUI button for view switching at top of screen.
         switch (showing)
         {
             case "Slingshot":
