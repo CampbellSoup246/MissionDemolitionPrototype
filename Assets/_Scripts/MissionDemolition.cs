@@ -29,12 +29,29 @@ public class MissionDemolition : MonoBehaviour {
     public GameMode mode = GameMode.idle;
     public string showing = "Slingshot"; //FollowCam mode
 
+    //Extra gameover stuff.
+    //Animator anim;
+    //public static int shotsTaken2;
+    public static bool outOfShots = false;  //****** PUT THIS ALSO IN WHEREVER START LEVEL STUFF IS to reset it
+    //For GameOver pop up stuff.
+    //void Awake()
+    //{
+        //anim = GetComponent<Animator>();
+   // }
+
 
     // Use this for initialization
     void Start() {
         S = this; //define the Singelton
         level = 0;
         levelMax = castles.Length;
+
+        //Begin extra stuff for ShotLimit.
+        /*
+        Text gameOver = this.GetComponent<Text>();
+        newHigh.enabled = false;
+        newHigh.text = "New high score!";*/
+        //End extra stuff.
         StartLevel();
     }
 
@@ -58,7 +75,8 @@ public class MissionDemolition : MonoBehaviour {
         ProjectileLine.S.Clear();
 
         Goal.goalMet = false; //Reset goal
-
+        outOfShots = false; //Rest GameOver pop up thingy, done on my own.
+        RestartButton.clicked = false;  //Reset GameOver popup Restart button trigger, done on my own.
         ShowGT();
 
         mode = GameMode.playing;
@@ -71,11 +89,31 @@ public class MissionDemolition : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
+
+        ShowGT(); //added on my own to try make text update with each shot.
+
         if (mode == GameMode.playing && Goal.goalMet) //Check for level end
         {
             mode = GameMode.levelEnd; //change mode to stop checking for level end.
             SwitchView("Both"); //zoomout
             Invoke("NextLevel", 2f); //start next level in 2 secs.
+        }
+
+        //begin extra stuff for ShotsLimit and gameOver anim stuff.        
+        else
+        {
+            if(shotsTaken > 10)
+            {
+                //anim.SetTrigger("GameOver");
+                //shotsTaken2 = shotsTaken;
+                outOfShots = true;
+            }
+        }
+
+        if (RestartButton.clicked == true)
+        {
+            //level = 0;        //This would reset player back to level 0 .
+            StartLevel();
         }
     }
 
