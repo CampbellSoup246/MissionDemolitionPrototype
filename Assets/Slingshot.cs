@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Slingshot : MonoBehaviour {
-
+    static public Slingshot S;//Added from ProjectileLine Singleton requirement from pgs 562-566.
     public GameObject launchPoint;
 
     //Pg 544 stuff.
@@ -17,6 +17,7 @@ public class Slingshot : MonoBehaviour {
 
     void Awake()
     {
+        S = this; //Set the Slingshot singleton S. from pg 566 due to ProjectileLine script.
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
