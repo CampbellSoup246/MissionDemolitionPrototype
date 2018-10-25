@@ -14,10 +14,10 @@ public class RestartButton : MonoBehaviour {
     void Start () {
         buttonComponent.onClick.AddListener(HandleClick);
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
     public void HandleClick()
     {
@@ -26,7 +26,7 @@ public class RestartButton : MonoBehaviour {
 
     public void LoadByIndex(int sceneIndex)
     {
-        //SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(sceneIndex);
 
     }
 }

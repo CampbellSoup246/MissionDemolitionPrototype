@@ -476,8 +476,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 470676884}
-        m_MethodName: HandleClick
-        m_Mode: 1
+        m_MethodName: LoadByIndex
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -755,8 +755,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castles:
-  - {fileID: 1082030187898390, guid: 60cfca685b634744b82ba36eb3812af2, type: 2}
-  - {fileID: 1658274147095488, guid: 88eaeeb212ad2154cb83168c86c6671a, type: 2}
+  - {fileID: 1463155294917230, guid: 782e898bedad8e5499cc6aa185389429, type: 2}
+  - {fileID: 1483816405401542, guid: 50098cd5d06f3314ca29afd26ec01107, type: 2}
   - {fileID: 1527832430141432, guid: 8bfb83f583fee114cb77bcc2971da9d0, type: 2}
   gtLevel: {fileID: 1300586549}
   gtScore: {fileID: 2000064930}
