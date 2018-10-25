@@ -23,6 +23,7 @@ public class MissionDemolition : MonoBehaviour {
 
     //All below fields set dynamically.
     public int level; //he current level.
+    public static int levelStat;    //This is my own, just to avoid making "level" a static var, made this one that just equals it everywhere.
     public int levelMax; //he number of levels
     public int shotsTaken;
     public GameObject castle; //Current castle
@@ -44,6 +45,7 @@ public class MissionDemolition : MonoBehaviour {
     void Start() {
         S = this; //define the Singelton
         level = 0;
+        levelStat = level;
         levelMax = castles.Length;
 
         //Begin extra stuff for ShotLimit.
@@ -71,7 +73,7 @@ public class MissionDemolition : MonoBehaviour {
         castle.transform.position = castlePos;
         shotsTaken = 0;
 
-        SwitchView("Both");//reset camera 
+        SwitchView("Both");//reset camera
         ProjectileLine.S.Clear();
 
         Goal.goalMet = false; //Reset goal
@@ -85,7 +87,7 @@ public class MissionDemolition : MonoBehaviour {
     void ShowGT()
     {           //Shows the data in the UI texts.
         gtLevel.text = "Level: " + (level + 1) +" of " + levelMax;
-        gtScore.text = "Shots taken: " + shotsTaken;
+        gtScore.text = "Shots taken: " + shotsTaken + "/10";
     }
     // Update is called once per frame
     void Update() {
@@ -94,15 +96,27 @@ public class MissionDemolition : MonoBehaviour {
 
         if (mode == GameMode.playing && Goal.goalMet) //Check for level end
         {
+            if(level == 0 && shotsTaken < HighScore.score1) //All if statements below to check if level HS is better.
+            {
+              HighScore.score1 = shotsTaken;
+            }
+            if(level == 1 && shotsTaken < HighScore.score2)
+            {
+              HighScore.score2 = shotsTaken;
+            }
+            if(level == 2 && shotsTaken < HighScore.score3)
+            {
+              HighScore.score3 = shotsTaken;
+            }
             mode = GameMode.levelEnd; //change mode to stop checking for level end.
             SwitchView("Both"); //zoomout
             Invoke("NextLevel", 2f); //start next level in 2 secs.
         }
 
-        //begin extra stuff for ShotsLimit and gameOver anim stuff.        
+        //begin extra stuff for ShotsLimit and gameOver anim stuff.
         else
         {
-            if(shotsTaken > 10)
+            if(shotsTaken >= 10)
             {
                 //anim.SetTrigger("GameOver");
                 //shotsTaken2 = shotsTaken;
@@ -120,9 +134,11 @@ public class MissionDemolition : MonoBehaviour {
     void NextLevel()
     {
         level++;
+        levelStat = level;
         if (level == levelMax)
         {
             level = 0;      //If level is at the max # of levels there are, start from beginning again.
+            levelStat = level;
         }
         StartLevel();
     }
@@ -170,7 +186,7 @@ public class MissionDemolition : MonoBehaviour {
         }
     }
 
-    public static void ShotFired()  //Static method, code anywhere can increment shotsTaken 
+    public static void ShotFired()  //Static method, code anywhere can increment shotsTaken
     {
         S.shotsTaken++;
     }
