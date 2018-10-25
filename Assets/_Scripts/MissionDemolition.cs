@@ -79,6 +79,7 @@ public class MissionDemolition : MonoBehaviour {
         Goal.goalMet = false; //Reset goal
         outOfShots = false; //Rest GameOver pop up thingy, done on my own.
         RestartButton.clicked = false;  //Reset GameOver popup Restart button trigger, done on my own.
+        ButtonScript.clickedButt = false;
         ShowGT();
 
         mode = GameMode.playing;
@@ -99,14 +100,19 @@ public class MissionDemolition : MonoBehaviour {
             if(level == 0 && shotsTaken < HighScore.score1) //All if statements below to check if level HS is better.
             {
               HighScore.score1 = shotsTaken;
+              Debug.Log("Score of 1 is " + HighScore.score1 + " while shots taken are " + shotsTaken);
             }
             if(level == 1 && shotsTaken < HighScore.score2)
             {
               HighScore.score2 = shotsTaken;
+              Debug.Log("Score of 2 is " + HighScore.score2 + " while shots taken are " + shotsTaken);
+
             }
             if(level == 2 && shotsTaken < HighScore.score3)
             {
               HighScore.score3 = shotsTaken;
+              Debug.Log("Score of 3 is " + HighScore.score3 + " while shots taken are " + shotsTaken);
+
             }
             mode = GameMode.levelEnd; //change mode to stop checking for level end.
             SwitchView("Both"); //zoomout
@@ -123,12 +129,13 @@ public class MissionDemolition : MonoBehaviour {
                 outOfShots = true;
             }
         }
-
+/*
         if (RestartButton.clicked == true)
         {
             //level = 0;        //This would reset player back to level 0 .
             StartLevel();
-        }
+        }*/
+
     }
 
     void NextLevel()
@@ -177,6 +184,15 @@ public class MissionDemolition : MonoBehaviour {
         {
             case "Slingshot":
                 FollowCam.S.poi = null;
+//Added this here to try and reduc lingering projectiles. Keeps newest two projectiles in case player hits Slingshot button while its flying still.
+//Nevermind, this breaks stuff.
+                /*GameObject[] gos = GameObject.FindGameObjectsWithTag("Projectile");
+                //foreach (GameObject ptempt in gos)
+                for(int i = 0; i < gos.Length-2; i++)
+                {
+                    Destroy(gos[i]);
+                }*/
+
                 break;
             case "Castle":
                 FollowCam.S.poi = S.castle;

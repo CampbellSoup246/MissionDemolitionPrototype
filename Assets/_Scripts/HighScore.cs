@@ -5,27 +5,36 @@ using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour {
 
-	static public int score1 = 10;
-	static public int score2 = 10;
-	static public int score3 = 10;
+  public static int score1 = 10;
+	public static int score2 = 10;
+	public static int score3 = 10;
 
 	void Awake()
 	{
 		if(PlayerPrefs.HasKey("Castle1HighScore"))
 		{
-			score1 = PlayerPrefs.GetInt("Castle1Highscore");
+			score1 = PlayerPrefs.GetInt("Castle1HighScore");
 		}
 		if(PlayerPrefs.HasKey("Castle2HighScore"))
 		{
-			score2 = PlayerPrefs.GetInt("Castle2Highscore");
+			score2 = PlayerPrefs.GetInt("Castle2HighScore");
 		}
 		if(PlayerPrefs.HasKey("Castle3HighScore"))
 		{
-			score3 = PlayerPrefs.GetInt("Castle3Highscore");
+			score3 = PlayerPrefs.GetInt("Castle3HighScore");
 		}
 		PlayerPrefs.SetInt("Castle1HighScore", score1);
 		PlayerPrefs.SetInt("Castle2HighScore", score2);
 		PlayerPrefs.SetInt("Castle3HighScore", score3);
+
+/*
+		score1 = 10;
+		score2 = 10;
+		score3 = 10;
+		PlayerPrefs.SetInt("Castle1HighScore", 10);
+		PlayerPrefs.SetInt("Castle2HighScore", 10);
+		PlayerPrefs.SetInt("Castle3HighScore", 10);
+		*/
 	}
 	// Use this for initialization
 	void Start () {
