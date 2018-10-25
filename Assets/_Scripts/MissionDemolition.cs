@@ -29,7 +29,7 @@ public class MissionDemolition : MonoBehaviour {
     public GameObject castle; //Current castle
     public GameMode mode = GameMode.idle;
     public string showing = "Slingshot"; //FollowCam mode
-
+    public static string showingStat = "Slingshot"; //Also my thing, same deal as levelStat. Tryin get that static var w/o messing up current one.
     //Extra gameover stuff.
     //Animator anim;
     //public static int shotsTaken2;
@@ -87,7 +87,7 @@ public class MissionDemolition : MonoBehaviour {
     void ShowGT()
     {           //Shows the data in the UI texts.
         gtLevel.text = "Level: " + (level + 1) +" of " + levelMax;
-        gtScore.text = "Shots taken: " + shotsTaken + "/10";
+        gtScore.text = "Shots taken: " + shotsTaken;// + "/10";
     }
     // Update is called once per frame
     void Update() {
@@ -142,7 +142,7 @@ public class MissionDemolition : MonoBehaviour {
         }
         StartLevel();
     }
-
+/*
     void OnGui()
     {
         Rect buttonRect = new Rect(0, 0, 50, 50);//(Screen.width / 2) - 50, 10, 100, 24); //Draw the GUI button for view switching at top of screen.
@@ -167,11 +167,12 @@ public class MissionDemolition : MonoBehaviour {
                 }
                 break;
         }
-    }
+    }*/
 
     static public void SwitchView(string eView) //static method allows code anywhere to request a view change
     {
         S.showing = eView;
+        showingStat = S.showing;
         switch (S.showing)
         {
             case "Slingshot":

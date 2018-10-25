@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour {
 
-	static public int score1 = 0;
-	static public int score2 = 0;
-	static public int score3 = 0;
+	static public int score1 = 10;
+	static public int score2 = 10;
+	static public int score3 = 10;
 
 	void Awake()
 	{
@@ -38,7 +38,7 @@ public class HighScore : MonoBehaviour {
 		if(MissionDemolition.levelStat == 0)
 		{
 			scoreText.text = "High Score: " + score1;
-			if(score1 > PlayerPrefs.GetInt("Castle1HighScore"))
+			if(score1 < PlayerPrefs.GetInt("Castle1HighScore"))
 			{
 				PlayerPrefs.SetInt("Castle1HighScore", score1);
 			}
@@ -46,7 +46,7 @@ public class HighScore : MonoBehaviour {
 		if(MissionDemolition.levelStat == 1)
 		{
 			scoreText.text = "High Score: " + score2;
-			if(score2 > PlayerPrefs.GetInt("Castle2HighScore"))
+			if(score2 < PlayerPrefs.GetInt("Castle2HighScore"))
 			{
 				PlayerPrefs.SetInt("Castle2HighScore", score2);
 			}
@@ -54,7 +54,7 @@ public class HighScore : MonoBehaviour {
 		if(MissionDemolition.levelStat == 2)
 		{
 			scoreText.text = "High Score: " + score3;
-			if(score3 > PlayerPrefs.GetInt("Castle3HighScore"))
+			if(score3 < PlayerPrefs.GetInt("Castle3HighScore"))
 			{
 				PlayerPrefs.SetInt("Castle3HighScore", score3);
 			}
