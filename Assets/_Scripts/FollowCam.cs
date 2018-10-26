@@ -16,6 +16,7 @@ public class FollowCam : MonoBehaviour
     //Pg 552
     public Vector2 minXY;
 
+    public static bool shotEnded = false;  //My own, to try and make GameOver anim. not play till ball is at rest.
 
     void Awake()
     {
@@ -32,8 +33,9 @@ public class FollowCam : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Page 549
+        shotEnded = false; // My thing, resets shotEnded to false every time hopefully quick enough so that gameover will not occur mid-shot for player.
 
+        //Page 549
         Vector3 destination;  //= poi.transform.position; //Get position of poi. //comment out is From pg 562
         if (poi == null)   //If no poi, return P:0,0,0. Pg 562
         {
@@ -48,6 +50,9 @@ public class FollowCam : MonoBehaviour
                 if (poi.GetComponent<Rigidbody>().IsSleeping())  //If is sleeping (i.e. not moving)
                 {
                     poi = null;  //return to default view.
+                    //MissionDemolition.ShotFired();      //Added in on my own to try and make shot count go up. //Somewhere else in script already does it.
+                    //GameOver();             //Trying this so that once projectile stops moving, if shots are out, will bring gameover screen up.
+                    shotEnded = true;
                     return;  //in the next update
                 }
             }
