@@ -11,7 +11,7 @@ public class ButtonScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 			buttonComponentSling.onClick.AddListener(HandleClick);
-			Debug.Log("In start of button script");
+			//Debug.Log("In start of button script");
 
 	}
 
